@@ -1,0 +1,22 @@
+name: MrBeast Outreach Bot
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"  # every 4 hours (UTC)
+  workflow_dispatch:
+
+jobs:
+  run-tweet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run tweet generator
+        run: python tweet.py
